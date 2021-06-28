@@ -1,3 +1,6 @@
+close all;
+clear all;
+
 t = TableroQuimico(10);
 
 for i = 1:2100
