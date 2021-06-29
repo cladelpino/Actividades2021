@@ -30,12 +30,12 @@ classdef TableroQuimico
       concentracion(nodo) = concentracion(nodo) + cantidad;
     endfunction
     
-    function t = TableroQuimico(cantidadNodos)
+    function t = TableroQuimico()
       
       % Cada nodo tiene asociada una ubicaci�n.
       % listaUbicacionesNodos es entonces una matriz de k x d
       % Donde k es la cantidad de nodos y d es la cantidad de dimensiones del sistema de coordenadas.
-      t.listaUbicacionesNodos = generarListaUbicacionesNodos2(cantidadNodos);
+      t.listaUbicacionesNodos = generarMatrizUbicacionesNodos2();
       
       % concentracion es un vector de k elementos, que contiene la concentracion de cada uno de los nodos.
       t.concentracion = inicializarConcentracion(t.listaUbicacionesNodos);
@@ -47,9 +47,10 @@ classdef TableroQuimico
       % resistencias es un vector de p elementos, que contiene la resistencia a la transferencia para cada
       % par de nodos.
       t.resistencias = inicializarResistencias(t.paresDeNodos,t.listaUbicacionesNodos);
+
       t.maxConc = max(t.concentracion);
       if size(t.listaUbicacionesNodos,2)~=2
-          error("La lista de ubicaciones de nodos generada por la funci�n generarListaUbicacionesNodos no tiene 2 columnas, como debe tener");
+          error("La matriz de ubicaciones de nodos generada por la funci�n generarMatrizUbicacionesNodos no tiene 2 columnas, como debe tener");
       end
       disp(miPropioMapa(t.concentracion,t.maxConc));
       figure;
