@@ -1,7 +1,7 @@
 function lista = generarMatrizUbicacionesNodos2()
   % Genera una grilla de nodos
-  x=1:4;
-  y=1:4;
+  x=1:2;
+  y=1:3;
   lista=zeros(length(x)*length(y),2);
   k=1;
   for i=1:length(x)

@@ -1,4 +1,4 @@
 function conc = inicializarValorPropiedad(lista)
-       conc = rand(size(lista,1),1);
-       conc(1) = 10*conc(1);
+       conc = 0.1*ones(size(lista,1),1);
+       conc(1) = 2;
 endfunction
