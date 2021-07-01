@@ -66,7 +66,7 @@ classdef TableroQuimico
       % Cada nodo tiene asociada una ubicaci�n.
       % listaUbicacionesNodos es entonces una matriz de k x d
       % Donde k es la cantidad de nodos y d es la cantidad de dimensiones del sistema de coordenadas.
-      t.listaUbicacionesNodos = generarMatrizUbicacionesNodos();
+      t.listaUbicacionesNodos = generarMatrizUbicacionesNodos2();
       
       % concentracion es un vector de k elementos, que contiene la concentracion de cada uno de los nodos.
       t.concentracion = inicializarValorPropiedad(t.listaUbicacionesNodos);
@@ -89,9 +89,9 @@ classdef TableroQuimico
       hold on;
       t.baseLineWidth = 1;
       t.addLineWidth = 10;
-      t.baseNodeSize = 300;
-      t.addNodeSize = 600;
-      t.labelOffset = 0.03;
+      t.baseNodeSize = 100;
+      t.addNodeSize = 1000;
+      t.labelOffset = 0.01;
       xEdgeLabels = NaN(size(t.paresDeNodos,1),1);
       yEdgeLabels = NaN(size(t.paresDeNodos,1),1);
       edgeLabels = cell(size(t.paresDeNodos,1),1);
@@ -100,8 +100,8 @@ classdef TableroQuimico
         xLineas = [t.listaUbicacionesNodos(t.paresDeNodos(i,1),1);t.listaUbicacionesNodos(t.paresDeNodos(i,2),1)];
         yLineas =[t.listaUbicacionesNodos(t.paresDeNodos(i,1),2);t.listaUbicacionesNodos(t.paresDeNodos(i,2),2)];
         t.linePlotHandles{i} = plot(xLineas,yLineas,'b');
-        xEdgeLabels(i) = mean(xLineas);
-        yEdgeLabels(i) = mean(yLineas);
+        xEdgeLabels(i) = mean(xLineas)+t.labelOffset;
+        yEdgeLabels(i) = mean(yLineas)+t.labelOffset;
         edgeLabels{i} = {['Par (',num2str(t.paresDeNodos(i,1)),',',num2str(t.paresDeNodos(i,2)),')'];
                          ['Resistencia: ',num2str(t.resistencias(i))];'Transmisión: 0'};
       end

@@ -2,9 +2,9 @@ close all;
 clear all;
 
 tiempoFinal = 2100;
-coeficiente = 0.08;
+coeficiente = 1/200;
 mostrarValores = false;
-tiempoPausa = 0.03; 
+tiempoPausa = 1/100;
 
 t = TableroQuimico();
 for i = 1:tiempoFinal
