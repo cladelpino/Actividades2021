@@ -8,6 +8,7 @@ classdef TableroQuimico
     minConc;
     paresDeNodos;
     resistencias;
+    figureHandle;
     handlePlot;
     linePlotHandles;
     edgesTextHandle;
@@ -84,7 +85,7 @@ classdef TableroQuimico
       if size(t.listaUbicacionesNodos,2)~=2
           error("La matriz de ubicaciones de nodos generada por la funci�n generarMatrizUbicacionesNodos no tiene 2 columnas, como debe tener");
       end
-      figure(1,'position',[0,0,1200,600]);
+      t.figureHandle = figure(1,'position',[0,0,1200,600]);
       axis off;
       hold on;
       t.baseLineWidth = 1;
