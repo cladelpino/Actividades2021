@@ -1,19 +1,50 @@
 classdef TableroQuimico
   properties
+    nowTime;
     listaUbicacionesNodos;
     concentracion;
+    transferencia;
     maxConc;
+    minConc;
     paresDeNodos;
     resistencias;
     handlePlot;
+    linePlotHandles;
+    edgesTextHandle;
+    nodesTextHandle;
+    timeLabelHandle;
+    baseLineWidth;
+    addLineWidth;
+    baseNodeSize;
+    addNodeSize;
+    labelOffset;
   endproperties
 
   methods
-
     function actualizarGrafico(obj)
-##          disp(get(obj.handlePlot,'cdata'));
-##          disp(obj.concentracion);
-          set(obj.handlePlot,'cdata',miPropioMapa(obj.concentracion,obj.maxConc));
+      try
+          maxTran = max(obj.transferencia);
+          currEdgeLabels = get(obj.edgesTextHandle,'string');
+          for i=1:size(currEdgeLabels,1)
+            currCell = currEdgeLabels{i};
+            currCell{3,1} = ['Transmisión: ',num2str(obj.transferencia(i))];
+            set(obj.edgesTextHandle(i),'string',currCell);
+            set(obj.linePlotHandles{i},'linewidth',obj.baseLineWidth+abs(obj.transferencia(i)/maxTran)*obj.addLineWidth);
+          end
+          currNodeLabels = get(obj.nodesTextHandle,'string');
+          for i=1:size(currNodeLabels,1)
+            currCell = currNodeLabels{i};
+            currCell{2,1} = ['Valor: ',num2str(obj.concentracion(i))];
+            set(obj.nodesTextHandle(i),'string',currCell);
+          end
+          nodesC = miPropioMapa(obj.concentracion,obj.minConc,obj.maxConc);
+          %nodesC = obj.concentracion;
+          set(obj.handlePlot,'cdata',nodesC);
+          set(obj.handlePlot,'sizedata',obj.baseNodeSize + obj.addNodeSize*(obj.concentracion / obj.maxConc));
+          set(obj.timeLabelHandle,'string',['Tiempo: ',num2str(obj.nowTime)]);
+      catch
+        error('No existe más el gráfico');
+      end
     end
     
     function obtenerIndiceNodo(coordenadas)
@@ -31,11 +62,11 @@ classdef TableroQuimico
     endfunction
     
     function t = TableroQuimico()
-      
+      t.nowTime = 0;
       % Cada nodo tiene asociada una ubicaci�n.
       % listaUbicacionesNodos es entonces una matriz de k x d
       % Donde k es la cantidad de nodos y d es la cantidad de dimensiones del sistema de coordenadas.
-      t.listaUbicacionesNodos = generarMatrizUbicacionesNodos2();
+      t.listaUbicacionesNodos = generarMatrizUbicacionesNodos();
       
       % concentracion es un vector de k elementos, que contiene la concentracion de cada uno de los nodos.
       t.concentracion = inicializarValorPropiedad(t.listaUbicacionesNodos);
@@ -49,18 +80,43 @@ classdef TableroQuimico
       t.resistencias = inicializarResistencias(t.paresDeNodos,t.listaUbicacionesNodos);
 
       t.maxConc = max(t.concentracion);
+      t.minConc = min(t.concentracion);
       if size(t.listaUbicacionesNodos,2)~=2
           error("La matriz de ubicaciones de nodos generada por la funci�n generarMatrizUbicacionesNodos no tiene 2 columnas, como debe tener");
       end
-      disp(miPropioMapa(t.concentracion,t.maxConc));
-      figure;
-      t.handlePlot = scatter(t.listaUbicacionesNodos(:,1),t.listaUbicacionesNodos(:,2),300,miPropioMapa(t.concentracion,t.maxConc),"filled");
+      figure(1,'position',[0,0,1200,600]);
+      axis off;
       hold on;
+      t.baseLineWidth = 1;
+      t.addLineWidth = 10;
+      t.baseNodeSize = 300;
+      t.addNodeSize = 600;
+      t.labelOffset = 0.03;
+      xEdgeLabels = NaN(size(t.paresDeNodos,1),1);
+      yEdgeLabels = NaN(size(t.paresDeNodos,1),1);
+      edgeLabels = cell(size(t.paresDeNodos,1),1);
+      t.linePlotHandles = cell(size(t.paresDeNodos,1));
       for i=1:size(t.paresDeNodos,1)
         xLineas = [t.listaUbicacionesNodos(t.paresDeNodos(i,1),1);t.listaUbicacionesNodos(t.paresDeNodos(i,2),1)];
         yLineas =[t.listaUbicacionesNodos(t.paresDeNodos(i,1),2);t.listaUbicacionesNodos(t.paresDeNodos(i,2),2)];
-        plot(xLineas,yLineas);
+        t.linePlotHandles{i} = plot(xLineas,yLineas,'b');
+        xEdgeLabels(i) = mean(xLineas);
+        yEdgeLabels(i) = mean(yLineas);
+        edgeLabels{i} = {['Par (',num2str(t.paresDeNodos(i,1)),',',num2str(t.paresDeNodos(i,2)),')'];
+                         ['Resistencia: ',num2str(t.resistencias(i))];'Transmisión: 0'};
       end
+      t.edgesTextHandle = text(xEdgeLabels,yEdgeLabels,edgeLabels);
+      nodesSize = t.baseNodeSize + t.addNodeSize*(t.concentracion / t.maxConc);
+      nodesColor = miPropioMapa(t.concentracion,t.minConc,t.maxConc);
+      %nodesColor = t.concentracion;
+      t.handlePlot = scatter(t.listaUbicacionesNodos(:,1),t.listaUbicacionesNodos(:,2),nodesSize,nodesColor,"filled");
+      nodeLabels = cell(size(t.listaUbicacionesNodos,1),1);
+      for i=1:size(t.listaUbicacionesNodos,1)
+        nodeLabels{i} = {['Nodo: ',num2str(i),' en ',num2str(t.listaUbicacionesNodos(i,1)),' , ',num2str(t.listaUbicacionesNodos(i,2))],['Valor: ',num2str(t.concentracion(i))]};
+      end
+      disp(nodeLabels);
+      t.nodesTextHandle = text(t.listaUbicacionesNodos(:,1)+t.labelOffset,t.listaUbicacionesNodos(:,2)+t.labelOffset,nodeLabels);
+      t.timeLabelHandle = text(1,max(t.listaUbicacionesNodos(:,2)+t.labelOffset)+5*t.labelOffset,['Tiempo: ',num2str(0)]);
       hold off;
     endfunction
     endmethods

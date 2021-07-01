@@ -3,16 +3,17 @@ clear all;
 
 tiempoFinal = 2100;
 coeficiente = 0.08;
-mostrarValores = true;
-tiempoPausa = 0.01; 
+mostrarValores = false;
+tiempoPausa = 0.03; 
 
 t = TableroQuimico();
 for i = 1:tiempoFinal
-  t.concentracion = difundirQuimico(t,coeficiente);
+  t.nowTime = i;
+  [t.concentracion,t.transferencia] = difundirQuimico(t,coeficiente);
   if mostrarValores
     disp("==============");
     disp("Paso")
-    disp(i);
+    disp(t.nowTime);
     disp("==============");
     disp(t.concentracion);
     disp("\\\\\\");

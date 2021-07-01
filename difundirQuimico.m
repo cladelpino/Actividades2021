@@ -1,21 +1,22 @@
-  function rVal = difundirQuimico(obj,coeficiente)
+  function [rVal,transferencia] = difundirQuimico(obj,coeficiente)
       concentracionOriginal = obj.concentracion;
       delta = zeros(size(obj.concentracion));
+      transferencia = NaN(size(obj.paresDeNodos),1);
       rVal = concentracionOriginal;
       for k = 1:size(obj.paresDeNodos,1)
         concentracionNodoA = concentracionOriginal(obj.paresDeNodos(k,1));
         concentracionNodoB = concentracionOriginal(obj.paresDeNodos(k,2));
-        %disp("Calculando difusión");
+        %disp("Calculando difusiï¿½n");
         %disp(concentracionNodoA);
         %disp(concentracionNodoB);
         %disp(coeficiente);
         %disp(obj.resistencias(k));
-        transferencia = difusionNodoAANodoB(coeficiente,obj.resistencias(k),concentracionNodoA,concentracionNodoB);
+        transferencia(k) = difusionNodoAANodoB(coeficiente,obj.resistencias(k),concentracionNodoA,concentracionNodoB);
         %disp(transferencia);
-        %disp("Calculada Difusión!");
+        %disp("Calculada Difusiï¿½n!");
 
-        delta(obj.paresDeNodos(k,1)) -= transferencia;
-        delta(obj.paresDeNodos(k,2)) += transferencia;
+        delta(obj.paresDeNodos(k,1)) -= transferencia(k);
+        delta(obj.paresDeNodos(k,2)) += transferencia(k);
         
         %disp("Proximo delta so far");
         %disp(delta);
