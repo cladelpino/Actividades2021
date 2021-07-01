@@ -1,3 +1,6 @@
 function lista = generarMatrizUbicacionesNodos()
-       lista = horzcat(transpose(1:10),transpose(1:10));
+       % Genera una linea de nodos ubicados a lo largo de la recta y = x
+       vectorFila = 1:5
+       vectorColumna = transpose(vectorFila);
+       lista = [vectorColumna , vectorColumna];
 endfunction
