@@ -43,7 +43,7 @@
     <tr><td>Mecánica de Fluidos </td><td>Tanques de agua </td><td>Altura del agua </td><td>Existencia de una cañería entre esos tanques</td><td> Largo y complejidad de la cañería</td></tr>
     <tr><td>Transferencia de Calor</td><td> Región del espacio </td><td> Temperatura </td><td> Si se encuentran aislados térmicamente </td><td> Material a través del cual esta difundiendo la energía</td></tr>
     <tr><td>Transferencia de Masa</td><td>Región del espacio</td><td>Concentración </td><td> Si puede transferirse masa entre un nodo y otro </td><td> Propiedades del compuesto y del medio en el que difunde</td></tr>
-    <tr><td>Epidemiología</td><td>Individuo</td><td> Carga viral </td><td> Si los inviduos tienen contacto entre sí </td><td> Estrechez del contacto</td></tr>
+    <tr><td>Epidemiología</td><td>Individuo</td><td> Carga viral </td><td> Si los individuos tienen contacto entre sí </td><td> Estrechez del contacto</td></tr>
     <tr><td>Sociología </td><td> Individuo </td><td> \% de acuerdo con cierta opinión </td><td> Si los individuos tienen contacto entre sí </td><td> Grado de confianza en las opiniones del otro de cada par</td></tr>
     </table>
     <p>El script <b>simular_difusion.m</b> está preparado para realizar una simulación de una estructura de este tipo. La simulación va ocurriendo a lo largo de diferentes instantes de tiempo. En cada paso de cálculo, el script calcula la transferencia que se produce a través de cada conexión, y por lo tanto como varia la concentración en cada nodo. Genera un gráfico que se va actualizando a medida que avanza la simulación.</p>
@@ -111,10 +111,12 @@
     
     <p>Dentro del script también es posible configurar:</p>
     <ul>    
-        <li>El tiempo total que dura la simulación (variable <b>tiempoFinal</b> en la linea <b>4</b>).</li>
-        <li>Valor que controla el nivel global de difusión (variable <b>coeficiente</b> en la linea <b>5</b>)</li>
-        <li>Que se muestren los valores de concentración o no en la ventana de comandos (variable <b>mostrarValores</b> en la linea <b>6</b>)</li>
-        <li>Cuanto tiempo se pausa el script para que se grafique correctamente (variable <b>tiempoPausa</b> en la linea <b>7</b>). Esta variable puede utilizarse para ajustarse a diferentes velocidades de performance de octave, o inclusive aumentarla para poder visualizar lentamente cada paso de simulación. La variable se especifica en segundos.</li>
+        <li><p>El tiempo total que dura la simulación (variable <b>tiempoFinal</b> en la linea <b>4</b>).</p></li>
+        <li><p>
+            Valor que controla el nivel global de difusión (variable <b>coeficiente</b> en la linea <b>5</b>)</li>
+            <li>Que se muestren los valores de concentración o no en la ventana de comandos (variable <b>mostrarValores</b> en la linea <b>6</b>)
+        </p></li>
+        <li><p>Cuanto tiempo se pausa el script para que se grafique correctamente (variable <b>tiempoPausa</b> en la linea <b>7</b>). Esta variable puede utilizarse para ajustarse a diferentes velocidades de performance de octave, o inclusive aumentarla para poder visualizar lentamente cada paso de simulación. La variable se especifica en segundos.</p></li>
     </ul>
 </body>
 </html>
