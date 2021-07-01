@@ -38,7 +38,7 @@ classdef TableroQuimico
       t.listaUbicacionesNodos = generarMatrizUbicacionesNodos2();
       
       % concentracion es un vector de k elementos, que contiene la concentracion de cada uno de los nodos.
-      t.concentracion = inicializarConcentracion(t.listaUbicacionesNodos);
+      t.concentracion = inicializarValorPropiedad(t.listaUbicacionesNodos);
       
       % paresDeNodos es una matriz de p x 2, donde cada fila corresponde a un par de nodos conectados
       % y las columnas son los �ndices de dichos nodos.
