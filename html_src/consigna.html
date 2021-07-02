@@ -44,77 +44,12 @@
             <tr><td>Sociología </td><td> Individuo </td><td> \% de acuerdo con cierta opinión </td><td> Si los individuos tienen contacto entre sí </td><td> Grado de confianza en las opiniones del otro de cada par</td></tr>
             </table>
             <p>El script <b>simular_difusion.m</b> está preparado para realizar una simulación de una estructura de este tipo. La simulación va ocurriendo a lo largo de diferentes instantes de tiempo. En cada paso de cálculo, el script calcula la transferencia que se produce a través de cada conexión, y por lo tanto como varia la concentración en cada nodo. Genera un gráfico que se va actualizando a medida que avanza la simulación.</p>
-            <img src="" alt="GIF del ejemplo griddy">
             <p>El código se encuentra listo para ser probado, por lo que para visualizarlo es necesario que descarguen los archivos dentro de una carpeta que se elija dentro de GNU/Octave, y ejecutar el script <b>simular_difusion.m</b></p>
             <h2>Consigna:</h2>
             <p>El comportamiento de la simulación puede influenciarse a través de la modificación de algunas funciones que utiliza el código provisto.</p>
             <p>Su grupo debe proveer una implementación de <b>cada una de estas 4 funciones</b>, modificando la simulación en la forma en que deseen.</p>
             <p>Se proveen dos ejemplos correctos de cada una de estas 4 funciones. Además, se provee un tercer archivo con una implementación minimamente funcional tal que puedan realizar su implementación en él.</p>
             <p>Para cambiar cuál de los archivos la simulación utiliza para cada función, se debe modificar el archivo <b>TableroQuimico.m</b>. Se sugiere hacerlo comentando o no lineas con los nombres de los diferentes archivos. Para ello, se provee el número de linea en <b>TableroQuimico.m</b> que hay que modificar.</p>
-            <ul class="signif">
-                <li>
-                    <h4>Función generarMatrizUbicacionesNodos():</h4>
-                    <p>Esta función debe generar una matriz de <b>k</b> filas y 2 columnas.</p> <p>Cada una de sus filas representa un nodo del sistema.</p><p> La primera columna representa la coordenada en <b>X</b> del nodo, y la segunda columna representa la coordenada en <b>Y</b> del nodo.</p><p> La cantidad de nodos y sus coordenadas debe determinarse dentro de la función.</p>
-                    <p><i>Ejemplo archivo generarMatrizUbicacionesNodos.m:</i></p>
-                    <img src="" alt="Imagen del código de esta función para el ejemplo 1">
-                    <p><b>Ejemplo matriz de salida del archivo generarMatrizUbicacionesNodos.m:</b></p>
-                    <p>M = []</p>
-                    <p><i>Ejemplo archivo generarMatrizUbicacionesNodos2.m:</i></p>
-                    <img src="" alt="Imagen del código de esta función para el ejemplo 2">
-                    <p><b>Ejemplo matriz de salida del archivo generarMatrizUbicacionesNodos2.m:</b></p>
-                    <p>M = []</p>
-                    <p>Lugar desde donde se la llama: Linea <b>38</b> del archivo <b>TableroQuimico.m</b></p>
-                </li>
-                <li>
-                    <h4>Función inicializarValorPropiedad(matrizUbicacionesNodos):</h4>
-                    <p>Esta función debe generar un vector de <b>k</b> elementos.</p>
-                    <p>Cada uno de estos elementos representa el valor inicial de la propiedad de cada nodo.</p>
-                    <p>Para implementar que el valor de la propiedad sea función de la posición del nodo, o detectar algún nodo especial, recibe como argumento la <b>matrizUbicacionesNodos</b> que se genera a partir de la función anterior.</p>
-                    <p><i>Ejemplo archivo inicializarValorPropiedad.m:</i></p>
-                    <img src="" alt="Imagen del código de esta función para el ejemplo 1">
-                    <p><b>Ejemplo matriz de salida del archivo inicializarValorPropiedad.m:</b></p>
-                    <p>M = []</p>
-                    <p><i>Ejemplo archivo inicializarValorPropiedad2.m:</i></p>
-                    <img src="" alt="Imagen del código de esta función para el ejemplo 2">
-                    <p><b>Ejemplo matriz de salida del archivo inicializarValorPropiedad2.m:</b></p>
-                    <p>M = []</p>
-                    <p>Lugar desde donde se la llama: Linea <b>41</b> del archivo <b>TableroQuimico.m</b></p>
-                </li>
-                <li>
-                    <h4>Función generarParesDeNodosConectados(matrizUbicacionesNodos):</h4>
-                        <p>Esta funcion debe generar una matriz de <b>p</b> filas y 2 columnas.</p>
-                        <p>Cada una de sus filas, representa un par de nodos que está conectado.</p>
-                        <p>Los nodos se representan por su índice dentro de las matrices generadas en las funciones anteriores.</p>
-                        <p>Recibe como argumento la matriz de ubicaciones para poder indicar las conexiones en función de ello.</p>
-                
-                        <p><i>Ejemplo archivo generarParesDeNodosConectados.m:</i></p>
-                        <img src="" alt="Imagen del código de esta función para el ejemplo 1">
-                        <p><b>Ejemplo matriz de salida del archivo generarParesDeNodosConectados.m:</b></p>
-                        <p>M = []</p>
-                        <p><i>Ejemplo archivo generarParesDeNodosConectados2.m:</i></p>
-                        <img src="" alt="Imagen del código de esta función para el ejemplo 2">
-                        <p><b>Ejemplo matriz de salida del archivo generarParesDeNodosConectados2.m:</b></p>
-                    <p>M = []</p>
-                        <p>Lugar desde donde se la llama: Linea <b>45</b> del archivo <b>TableroQuimico.m</b></p>
-                </li>
-                <li>
-                    <h4>Función inicializarResistencias(paresDeNodos,matrizUbicacionesNodos):</h4>
-                    <p>Esta funcion debe generar un vector de <b>p</b> elementos.</p>
-                    <p>Cada elemento, representa un par de nodos conectado, de acuerdo a la fila de dicho par en la matriz de pares de nodos generada en la función anterior.</p>
-                    <p>El valor de la función se considera la resistencia a la transferencia en dicho par de nodos.</p>
-                    <p>Recibe como argumento las matrices que hayan generado las funciones anteriores.</p>
-    
-                    <p><i>Ejemplo archivo inicializarResistencias.m:</i></p>
-                    <img src="" alt="Imagen del código de esta función para el ejemplo 1">
-                    <p><b>Ejemplo matriz de salida del archivo inicializarResistencias.m:</b></p>
-                    <p>M = []</p>
-                    <p><i>Ejemplo archivo inicializarResistencias2.m:</i></p>
-                    <img src="./img/inicializarResistencias2_codigo.png" alt="Imagen del código de esta función para el ejemplo 2">
-                    <p><b>Ejemplo de salida del archivo inicializarResistencias2.m:</b></p>
-                    <img src="./img/ejemplo_inicializarResistencias2.png" alt="Imagen del resultado para una ejecucion de una simulacion que usaba este ejemplo">
-                    <p>Lugar desde donde se la llama: Linea <b>49</b> del archivo <b>TableroQuimico.m</b></p>
-                </li>
-            </ul>
             <p>Dentro del script también es posible configurar:</p>
             <ul>
                 <li><p>El tiempo total que dura la simulación (variable <b>tiempoFinal</b> en la linea <b>4</b>).</p></li>

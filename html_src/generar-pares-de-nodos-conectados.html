@@ -1,0 +1,52 @@
+<html>
+    <style>
+        table,th,td{
+            border:1px solid black;
+        }
+        td,th{
+            padding:8px;
+        }
+        p,td,th{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container>p{
+            margin-top: 25px;
+        }
+        .container{
+            background-color: #e8d2a5;
+        }
+        ul.signif>li{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        ul.signif>li>p,img{
+            margin-left:30px;
+        }
+        img{
+            width: 90%;
+        }
+        img,p,table{
+            max-width: 1200px;
+        }
+    </style>
+        <div class="container">
+            <h1>Función generarParesDeNodosConectados(matrizUbicacionesNodos):</h1>
+            <p>Esta funcion debe generar una matriz de <b>p</b> filas y 2 columnas.</p>
+            <p>Cada una de sus filas, representa un par de nodos que está conectado.</p>
+            <p>Los nodos se representan por su índice dentro de las matrices generadas en las funciones anteriores.</p>
+            <p>Recibe como argumento la matriz de ubicaciones para poder indicar las conexiones en función de ello.</p>
+            <p>Lugar desde donde se la llama: Linea <b>45</b> del archivo <b>TableroQuimico.m</b></p>
+            <div class="spacer">&nbsp;</div>
+            <p><i>Ejemplo archivo generarParesDeNodosConectados.m:</i></p>
+            <img src="./img/generarParesDeNodosConectados1_codigo.png" alt="Imagen del código de esta función para el ejemplo 1">
+            <p><b>Ejemplo matriz de salida del archivo generarParesDeNodosConectados.m en el ejemplo inicial:</b></p>
+            <p>M = [1, 2; 2, 3; 3, 4; 4, 5; 5, 6]</p>
+            <img src="./img/generarParesDeNodosConectados1_ejemplo.png" alt="Imagen del resultado de esta función para el ejemplo 1">
+            <div class="spacer">&nbsp;</div>
+            <p><i>Ejemplo</i> archivo <b>generarParesDeNodosConectados2.m</b>:</p>
+            <img src="./img/generarParesDeNodosConectados2_codigo.png" alt="Imagen del código de esta función para el ejemplo 2">
+            <p><i>Ejemplo</i> matriz de salida del archivo <b>generarParesDeNodosConectados2.m:</b></p>
+            <p>M = [1, 2; 1, 4; 2, 3; 2, 5; 3, 6; 4, 5; 5, 6]</p>
+            <img src="./img/generarParesDeNodosConectados2_ejemplo.png" alt="Imagen del resultado de esta función para el ejemplo 2">
+        </div>
+</html>
