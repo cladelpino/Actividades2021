@@ -6,7 +6,7 @@
         td,th{
             padding:8px;
         }
-        p,td,th{
+        p,td,th,h1,h2,h3,h4{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .container>p{
@@ -31,8 +31,10 @@
     </style>
         <div class="container">
             <h1>Actividad: Difusión</h1>
-            <p>Esta actividad se centra alrededor de la simulación de la transmisión de una cierta propiedad a través de un conjunto de nodos.</p><p>Si un par de nodos está conectado, la propiedad puede pasar de La tasa de transmisión de la propiedad entre un nodo y otro depende del valor de la propiedad en cada uno de ellos, trasmitiendose la propiedad desde aquellos nodos donde su valor es más alto a aquellos donde es más bajo. Además, cada par de nodos puede tener cierto valor de resistencia a la transferencia asociado.</p>
-            <p></p>
+            <p>Esta actividad se centra alrededor de la simulación de la transmisión de una cierta propiedad a través de un conjunto de nodos.</p>
+            <p>Si un par de nodos está conectado, la propiedad puede pasar de uno a otro</p>
+            <p>La tasa de transmisión de la propiedad entre un nodo y otro depende del valor de la propiedad en cada uno de ellos, trasmitiendose la propiedad desde aquellos nodos donde su valor es más alto a aquellos donde es más bajo.
+            <p>Además, cada par de nodos puede tener cierto valor de resistencia a la transferencia asociado.</p>
             <img src="./img/out.gif" alt="Animación del inicio del ejemplo 1">
             <p>Varias situaciones podrían ser modeladas con esta estructura. Esta tabla presenta algunos ejemplos:</p>
             <table>
@@ -54,8 +56,8 @@
             <ul>
                 <li><p>El tiempo total que dura la simulación (variable <b>tiempoFinal</b> en la linea <b>4</b>).</p></li>
                 <li><p>
-                    Valor que controla el nivel global de difusión (variable <b>coeficiente</b> en la linea <b>5</b>)</li>
-                    <li>Que se muestren los valores de concentración o no en la ventana de comandos (variable <b>mostrarValores</b> en la linea <b>6</b>)
+                    Valor que controla el nivel global de difusión (variable <b>coeficiente</b> en la linea <b>5</b>)</p></li>
+                    <li><p>Que se muestren los valores de concentración o no en la ventana de comandos (variable <b>mostrarValores</b> en la linea <b>6</b>)
                 </p></li>
                 <li><p>Cuanto tiempo se pausa el script para que se grafique correctamente (variable <b>tiempoPausa</b> en la linea <b>7</b>). Esta variable puede utilizarse para ajustarse a diferentes velocidades de performance de octave, o inclusive aumentarla para poder visualizar lentamente cada paso de simulación. La variable se especifica en segundos.</p></li>
             </ul>
