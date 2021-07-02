@@ -24,7 +24,7 @@ classdef TableroQuimico
   methods
     function actualizarGrafico(obj)
       try
-          maxTran = abs(max(obj.transferencia));
+          maxTran = max(abs(obj.transferencia));
           currEdgeLabels = get(obj.edgesTextHandle,'string');
           for i=1:size(currEdgeLabels,1)
             currCell = currEdgeLabels{i};
