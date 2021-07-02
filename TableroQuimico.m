@@ -24,7 +24,7 @@ classdef TableroQuimico
   methods
     function actualizarGrafico(obj)
       try
-          maxTran = max(obj.transferencia);
+          maxTran = abs(max(obj.transferencia));
           currEdgeLabels = get(obj.edgesTextHandle,'string');
           for i=1:size(currEdgeLabels,1)
             currCell = currEdgeLabels{i};
@@ -41,7 +41,7 @@ classdef TableroQuimico
           nodesC = mapaDeColor(obj.concentracion,obj.minConc,obj.maxConc);
           %nodesC = obj.concentracion;
           set(obj.handlePlot,'cdata',nodesC);
-          set(obj.handlePlot,'sizedata',obj.baseNodeSize + obj.addNodeSize*(obj.concentracion / obj.maxConc));
+          set(obj.handlePlot,'sizedata',obj.baseNodeSize + obj.addNodeSize*(obj.concentracion/obj.maxConc));
           set(obj.timeLabelHandle,'string',['Tiempo: ',num2str(obj.nowTime)]);
       catch
         error('No existe más el gráfico');
@@ -79,8 +79,9 @@ classdef TableroQuimico
       
       % paresDeNodos es una matriz de p x 2, donde cada fila corresponde a un par de nodos conectados
       % y las columnas son los �ndices de dichos nodos.
-      t.paresDeNodos = generarParesDeNodosConectados(t.listaUbicacionesNodos);
+      %t.paresDeNodos = generarParesDeNodosConectados(t.listaUbicacionesNodos);
       % t.paresDeNodos = generarParesDeNodosConectados2(t.listaUbicacionesNodos);
+      t.paresDeNodos = generarParesDeNodosConectados3(t.listaUbicacionesNodos);
 
       % resistencias es un vector de p elementos, que contiene la resistencia a la transferencia para cada
       % par de nodos.
